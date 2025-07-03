@@ -1,0 +1,6 @@
+streamlit==1.19.0
+openai==0.27.0
+google-auth==2.14.1
+gspread==5.7.2
+reportlab==3.6.12
+

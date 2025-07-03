@@ -8,28 +8,31 @@ st.title("🤖 Chuck – Your Quote Generator")
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Display previous chat messages
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
+# Get user input from chat box
 user_input = st.chat_input("What quote do you need today?")
 if user_input:
     st.chat_message("user").write(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Example logic – replace with NLP or parsing
+    # Example placeholder logic for quoting - replace with real NLP or parsing
     customer_name = "Port Crossing"
     item = "refrigerator"
     quantity = 2
 
+    # Fetch data and calculate pricing
     customer_info = get_customer_info(customer_name)
     unit_price = get_product_price(item)
     subtotal = unit_price * quantity
     tax = subtotal * 0.07
     total = subtotal + tax
 
+    # Generate PDF quote (function should return path or bytes)
     pdf_path = generate_quote_pdf(customer_info, item, quantity, unit_price, tax, total)
 
-    response = f"Here's your quote for {quantity} {item}(s):\n\nSubtotal: ${subtotal:.2f}\nTax: ${tax:.2f}\nTotal: ${total:.2f}"
-    st.chat_message("assistant").write(response)
-    st.download_button("📄 Download Quote PDF", data=open(pdf_path, "rb"), file_name="quote.pdf")
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    # Optional: show confirmation or link to download PDF
+    st.success(f"Quote generated for {customer_name}: {quantity} x {item} at ${unit_price} each. Total: ${total:.2f}")
+

@@ -1,4 +1,11 @@
 streamlit
+<<<<<<< HEAD
 fpdf
 gspread
 oauth2client
+=======
+openai
+google-auth
+gspread
+reportlab
+>>>>>>> 8a1dba2 (Initial commit for ChadAI)
